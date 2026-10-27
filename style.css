@@ -1,0 +1,235 @@
+/* ITAS191 Assignment 1 - style.css
+   Portfolio v1. All styles live here (no <style> blocks, no style= attrs). */
+
+/* ---- Palette ----
+   Colours with jobs. Ratios checked at webaim.org/resources/contrastchecker/
+   job      hex       used for                  contrast
+   paper    #f4f1ea   page background           -
+   ink      #1a1a1a   body text                 15.42:1 on paper
+   accent   #0b6357   header, nav, links        6.33:1 on paper / 7.15:1 on white
+   muted    #5f6b63   borders, quieter text     4.93:1 on paper
+   surface  #ffffff   cards                     -
+   (white text on accent header/footer: 7.15:1)
+*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* ---- Base + type ---- */
+body {
+    font-family: "Libertinus Sans", Arial, Helvetica, sans-serif;  /* body font */
+    color: #1a1a1a;              /* ink */
+    background: #f4f1ea;         /* paper */
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+/* Headings use the display font */
+h1, h2, h3 {
+    font-family: "Libertinus Serif", Georgia, serif;
+}
+
+/* Visible three-step type scale - each step ~1.5x the last */
+h3 { font-size: 1.3rem; }
+h2 { font-size: 1.6rem; }
+h1 { font-size: 2.6rem; }
+
+p {
+    max-width: 65ch;   /* keep lines readable */
+}
+
+/* ---- Header + hero ---- */
+/* Mobile-first: these base rules are the phone layout.
+   Wider screens get more padding in the media query at the bottom. */
+header {
+    background: #0b6357;   /* accent */
+    color: #ffffff;
+    padding: 1rem;
+}
+
+.hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    margin: 0 0 0.25rem;
+}
+
+.tagline {
+    margin: 0 0 1rem;
+    color: #ffffff;
+}
+
+/* ---- Nav ---- */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    /* transition on the NORMAL state so colour glides both ways */
+    transition: background 0.2s;
+}
+
+/* :hover is the mouse, :focus is the keyboard - both required */
+nav a:hover,
+nav a:focus {
+    background: #08453d;   /* darker accent */
+    text-decoration: underline;
+}
+
+/* Visible keyboard focus ring */
+nav a:focus {
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* The 3D hero frame */
+/* Phone: fills the width of its column and keeps its 4:3 shape.
+   overflow: hidden stops the old canvas size from stretching the box
+   while the script redraws it at the new size. */
+#scene {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    flex: none;
+}
+
+#scene canvas {
+    display: block;
+}
+
+/* ---- Main sections ---- */
+main {
+    max-width: 70rem;
+    margin: 0 auto;
+    padding: 1rem 1rem 3rem;
+}
+
+section {
+    padding: 2rem 0;
+    border-bottom: 1px solid #5f6b63;   /* muted */
+}
+
+/* ---- About Me ---- */
+.about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+    object-position: center 28%;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 16rem;
+}
+
+.skills {
+    padding-left: 1.2rem;
+}
+
+/* ---- Projects: a flex row that wraps ---- */
+.projects {
+    display: flex;
+    flex-wrap: wrap;   /* wrap onto the next line when there is no room */
+    gap: 1.5rem;
+}
+
+.project {
+    flex: 1 1 16rem;        /* grow, but wrap below ~16rem wide */
+    background: #ffffff;    /* surface */
+    border: 1px solid #5f6b63;   /* muted */
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.project h3 {
+    margin-top: 0;
+}
+
+/* Project titles are links - they need hover + focus + transition too */
+.project h3 a {
+    color: #0b6357;   /* accent */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.project h3 a:hover,
+.project h3 a:focus {
+    color: #08453d;
+    text-decoration: underline;
+}
+
+.project h3 a:focus {
+    outline: 3px solid #0b6357;
+    outline-offset: 2px;
+}
+
+/* ---- Contact ---- */
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li {
+    margin-bottom: 0.5rem;
+}
+
+.contact-list a {
+    color: #0b6357;   /* accent */
+    overflow-wrap: anywhere;   /* a long email wraps instead of sticking out */
+}
+
+/* ---- Footer ---- */
+footer {
+    background: #0b6357;   /* accent */
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+/* ---- Wider screens: 768px (48rem) and up ----
+   Tablets and laptops have room, so the header and main get their
+   roomier 2rem padding back, and the scene goes back to 320px wide
+   so it can sit beside my name. */
+@media (min-width: 48rem) {
+    header {
+        padding: 2rem;
+    }
+
+    #scene {
+        width: 320px;
+    }
+
+    main {
+        padding: 1rem 2rem 3rem;
+    }
+}
+
+/* AI disclosure (assignment policy): I asked an AI assistant to carry over my
+   Lab 4 fonts and palette, build the flex layouts (hero, about, wrapping
+   projects), and the nav/project hover+focus+transition styles. I picked the
+   fonts and colours and checked every contrast ratio myself at webaim.org.
+   In week 6 I asked Claude Code to make it mobile-first: phone padding, the
+   48rem media query, the scene filling its column, and the photo crop. */

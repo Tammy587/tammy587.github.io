@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tammy Ogunkeyede — Portfolio</title>
+
+    <!-- Google Fonts: display + body pairing, carried over from Lab 4.
+         Must come ABOVE style.css so the fonts load before my rules use them. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER = site title + nav + a 3D "hero" beside my name -->
+    <header>
+        <div class="hero">
+            <div class="hero-text">
+                <h1>Tammy Ogunkeyede</h1>
+                <!-- TODO: one short line about who you are / what you do -->
+                <p class="tagline">First-year IT student building things for the web.</p>
+
+                <!-- NAV: every link jumps to a section id below -->
+                <nav>
+                    <a href="#about">About Me</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#classmates">Classmates</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+
+            <!-- Part 5 (A1): the 3D scene, placed as a hero beside my name.
+                 The #scene size lives in style.css; the two <script> blocks at
+                 the bottom of this file draw it. My palette colours live in the
+                 script's CHANGE ME lines. -->
+            <div id="scene"></div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ABOUT ME: paragraph + skills + an image -->
+        <section id="about">
+            <h2>About Me</h2>
+
+            <div class="about-grid">
+                <!-- Image kept IN this folder (not linked from another site).
+                     srcset lists both sizes; sizes says it shows 200px wide,
+                     so the browser downloads the smallest file that is sharp
+                     enough for the screen. -->
+                <img class="avatar" src="images/tammy-thumb.jpg"
+                     srcset="images/tammy-thumb.jpg 400w, images/tammy.jpg 800w"
+                     sizes="200px"
+                     alt="Photo of Tammy Ogunkeyede"
+                     width="200" height="200">
+
+                <div class="about-text">
+                    <!-- TODO: rewrite this in your own voice so it sounds like you -->
+                    <p>
+                        Hi, I'm Tammy. I'm learning web development and I like
+                        figuring out how things work and making them look clean
+                        and easy to use. This site is where I'll collect the
+                        projects I build as I go.
+                    </p>
+
+                    <h3>Skills</h3>
+                    <!-- TODO: 3-5 skills you have or are learning -->
+                    <ul class="skills">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Problem-solving</li>
+                        <li>Git &amp; GitHub</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS: three goals, side by side, wrapping onto the next line -->
+        <section id="projects">
+            <h2>Projects</h2>
+
+            <div class="projects">
+                <!-- TODO: replace each title, description, and the link (href) -->
+                <article class="project">
+                    <h3><a href="#projects">Build my portfolio site</a></h3>
+                    <p>Design and launch this site so anyone who searches my
+                       name finds my work.</p>
+                </article>
+
+                <article class="project">
+                    <h3><a href="#projects">Learn JavaScript</a></h3>
+                    <p>Go beyond HTML and CSS and make pages that respond and
+                       do things.</p>
+                </article>
+
+                <article class="project">
+                    <h3><a href="#projects">Contribute to open source</a></h3>
+                    <p>Find a beginner-friendly project on GitHub and get my
+                       first pull request merged.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CLASSMATES: links to two classmates' live sites (A1 section 7) -->
+        <section id="classmates">
+            <h2>My classmates' websites</h2>
+            <ul class="contact-list">
+                <li>Brayden's GitHub:
+                    <a href="https://brayden-brezden.github.io">brayden-brezden.github.io</a>
+                </li>
+                <li>Mario's GitHub:
+                    <a href="https://mariomacrae.github.io">mariomacrae.github.io</a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- CONTACT: a publishable email + a profile link. No phone/address. -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <ul class="contact-list">
+                <li>Email:
+                    <a href="mailto:tammybotdeadeye@gmail.com">tammybotdeadeye@gmail.com</a>
+                </li>
+                <li>GitHub:
+                    <a href="https://github.com/tammy587">github.com/tammy587</a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; Tammy Ogunkeyede 2026</p>
+    </footer>
+
+    <!-- 3D scene scripts. Import map MUST come before the module script.
+         One import map per page. -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+    const box = document.getElementById("scene");
+
+    // CHANGE ME - background colour (paper, from my palette)
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#f4f1ea");
+
+    // CHANGE ME - camera position (x, y, z). Lower + closer = look UP at the peak.
+    const camera = new THREE.PerspectiveCamera(
+        50, box.clientWidth / box.clientHeight, 0.1, 100);
+    camera.position.set(2.2, 1, 3);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(box.clientWidth, box.clientHeight);
+    box.appendChild(renderer.domElement);
+
+    // The mountain. ConeGeometry(radius, height, radialSegments).
+    // CHANGE ME - radialSegments low = faceted low-poly look.
+    // CHANGE ME - colour is the main object (accent green from my palette).
+    const mountain = new THREE.Mesh(
+        new THREE.ConeGeometry(1.2, 2, 5),
+        new THREE.MeshStandardMaterial({ color: "#0b6357", flatShading: true }));
+    mountain.position.y = 0.5;   // sit it on top of the ground
+
+    // CHANGE ME - snow cap colour (white, the light colour from my palette).
+    // Wider than the mountain here so it sits OVER the green, and a child of the
+    // mountain so it spins with it.
+    const snow = new THREE.Mesh(
+        new THREE.ConeGeometry(0.65, 1, 5),
+        new THREE.MeshStandardMaterial({ color: "#ffffff", flatShading: true }));
+    snow.position.y = 0.55;
+    mountain.add(snow);
+
+    scene.add(mountain);
+
+    // The ground the mountain stands on.
+    // CHANGE ME - colour is the accent (muted green from my palette).
+    const ground = new THREE.Mesh(
+        new THREE.CircleGeometry(2.4, 32),
+        new THREE.MeshStandardMaterial({ color: "#5f6b63" }));
+    ground.rotation.x = -Math.PI / 2;   // lay it flat
+    ground.position.y = -0.5;
+    scene.add(ground);
+
+    // Lights (white, from my palette).
+    scene.add(new THREE.AmbientLight("#ffffff", 1));
+    const sun = new THREE.DirectionalLight("#ffffff", 2.5);
+    sun.position.set(3, 5, 4);
+    scene.add(sun);
+
+    // Drag to look around.
+    const controls = new OrbitControls(camera, renderer.domElement);
+    // CHANGE ME - aim the camera up toward the peak, not the ground.
+    controls.target.set(0, 0.8, 0);
+    controls.update();
+
+    // Redraw at the right size whenever #scene changes size (window resize,
+    // phone rotated). The shape stays the same because the CSS keeps it 4:3.
+    new ResizeObserver(() => {
+        camera.aspect = box.clientWidth / box.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(box.clientWidth, box.clientHeight);
+    }).observe(box);
+
+    renderer.setAnimationLoop(() => {
+        // CHANGE ME - spin speed. Bigger = faster.
+        mountain.rotation.y += 0.005;
+        controls.update();
+        renderer.render(scene, camera);
+    });
+    </script>
+
+    <!-- AI disclosure (assignment policy): I asked an AI assistant to scaffold
+         this page's structure, carry over my Lab 4 fonts/palette, wire the nav
+         jump links and the hover/focus states, and place the Three.js scene. I
+         am writing the content myself and can rebuild every part. The scene's
+         prompts are recorded in prompts.md. In week 6 I asked Claude Code to
+         add my photo with srcset, make the scene resize with the page, fill in
+         my contact details, and add the Classmates section and nav link. -->
+</body>
+</html>
