@@ -40,6 +40,26 @@ p {
     max-width: 65ch;   /* keep lines readable */
 }
 
+/* ---- Skip link (Lab 7, Part 2) ----
+   Off screen until the keyboard reaches it. On the first Tab it drops into
+   place at the top of the page, in my accent colours, with a focus ring. */
+.skip {
+    position: absolute;
+    left: -9999px;
+}
+
+.skip:focus {
+    position: static;
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #ffffff;    /* surface */
+    color: #0b6357;         /* accent */
+    font-weight: 700;
+    outline: 3px solid #0b6357;
+    outline-offset: 2px;
+}
+
 /* ---- Header + hero ---- */
 /* Mobile-first: these base rules are the phone layout.
    Wider screens get more padding in the media query at the bottom. */
@@ -106,6 +126,14 @@ nav a:focus {
     aspect-ratio: 4 / 3;
     overflow: hidden;
     flex: none;
+    display: none;   /* Lab 7: phones skip the scene (and its 257 KB script) */
+}
+
+/* 700px and wider: show the scene. Same width as the script's check. */
+@media (min-width: 700px) {
+    #scene {
+        display: block;
+    }
 }
 
 #scene canvas {
@@ -168,20 +196,19 @@ section {
     margin-top: 0;
 }
 
-/* Project titles are links - they need hover + focus + transition too */
-.project h3 a {
+/* Project links (Lab 7: the titles are headings now, the link is below) -
+   they need hover + focus + transition too */
+.project a {
     color: #0b6357;   /* accent */
-    text-decoration: none;
     transition: color 0.2s;
 }
 
-.project h3 a:hover,
-.project h3 a:focus {
+.project a:hover,
+.project a:focus {
     color: #08453d;
-    text-decoration: underline;
 }
 
-.project h3 a:focus {
+.project a:focus {
     outline: 3px solid #0b6357;
     outline-offset: 2px;
 }
@@ -199,6 +226,19 @@ section {
 .contact-list a {
     color: #0b6357;   /* accent */
     overflow-wrap: anywhere;   /* a long email wraps instead of sticking out */
+    transition: color 0.2s;
+}
+
+/* Lab 7: classmate and contact links get the same visible focus ring as
+   the project links, instead of relying on the browser's default */
+.contact-list a:hover,
+.contact-list a:focus {
+    color: #08453d;
+}
+
+.contact-list a:focus {
+    outline: 3px solid #0b6357;
+    outline-offset: 2px;
 }
 
 /* ---- Footer ---- */

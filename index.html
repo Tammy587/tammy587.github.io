@@ -3,7 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tammy Ogunkeyede — Portfolio</title>
+    <title>Tammy Ogunkeyede: IT student portfolio, VIU Nanaimo</title>
+
+    <!-- Lab 7, Part 3: the tags search engines and link previews read.
+         Full addresses here only (canonical + og:), all on my GitHub Pages address. -->
+    <meta name="description" content="Tammy Ogunkeyede is a first-year IT student at VIU in Nanaimo, learning web development. See projects, skills and contact details.">
+    <link rel="canonical" href="https://tammy587.github.io/">
+    <meta property="og:title" content="Tammy Ogunkeyede: IT student portfolio, VIU Nanaimo">
+    <meta property="og:description" content="First-year IT student at VIU in Nanaimo, learning web development.">
+    <meta property="og:image" content="https://tammy587.github.io/images/tammy.jpg">
+    <meta property="og:url" content="https://tammy587.github.io/">
 
     <!-- Google Fonts: display + body pairing, carried over from Lab 4.
          Must come ABOVE style.css so the fonts load before my rules use them. -->
@@ -14,6 +23,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Lab 7, Part 2: skip link. First thing in <body>, hidden until it gets
+         keyboard focus (style.css .skip), and jumps past the header and nav. -->
+    <a class="skip" href="#main">Skip to content</a>
 
     <!-- HEADER = site title + nav + a 3D "hero" beside my name -->
     <header>
@@ -35,12 +47,17 @@
             <!-- Part 5 (A1): the 3D scene, placed as a hero beside my name.
                  The #scene size lives in style.css; the two <script> blocks at
                  the bottom of this file draw it. My palette colours live in the
-                 script's CHANGE ME lines. -->
-            <div id="scene"></div>
+                 script's CHANGE ME lines.
+                 Lab 7: role="img" + aria-label are the scene's text alternative,
+                 because a canvas has no text of its own. -->
+            <div id="scene" role="img"
+                 aria-label="A low-poly green mountain with a white snow cap, turning slowly on a round grey-green ground."></div>
         </div>
     </header>
 
-    <main>
+    <!-- id="main" is where the skip link lands. tabindex="-1" lets the link
+         move keyboard focus here, not just scroll the page. -->
+    <main id="main" tabindex="-1">
 
         <!-- ABOUT ME: paragraph + skills + an image -->
         <section id="about">
@@ -58,12 +75,16 @@
                      width="200" height="200">
 
                 <div class="about-text">
-                    <!-- TODO: rewrite this in your own voice so it sounds like you -->
+                    <!-- Lab 7, Part 4: plain first sentence (who + what), then
+                         specifics. Every fact here is already in my own records. -->
                     <p>
-                        Hi, I'm Tammy. I'm learning web development and I like
-                        figuring out how things work and making them look clean
-                        and easy to use. This site is where I'll collect the
-                        projects I build as I go.
+                        Tammy Ogunkeyede is a first-year IT student at VIU in
+                        Nanaimo, learning web development. I like figuring out how things work and
+                        making them look clean and easy to use. I built this page
+                        with HTML and CSS, picked its two fonts and its green
+                        palette, and checked every colour pair for contrast at
+                        WebAIM before using it. This site is where I'll collect
+                        the projects I build as I go.
                     </p>
 
                     <h3>Skills</h3>
@@ -83,23 +104,38 @@
             <h2>Projects</h2>
 
             <div class="projects">
-                <!-- TODO: replace each title, description, and the link (href) -->
+                <!-- Lab 7: the titles used to be links to #projects, the section
+                     they sit in, so they went nowhere. Titles are now plain
+                     headings; a real link says where it goes. -->
                 <article class="project">
-                    <h3><a href="#projects">Build my portfolio site</a></h3>
-                    <p>Design and launch this site so anyone who searches my
-                       name finds my work.</p>
+                    <h3>This portfolio site</h3>
+                    <p>I built this site so anyone who searches my name finds
+                       my work. It is HTML and CSS, with Libertinus Sans and
+                       Libertinus Serif from Google Fonts, published on GitHub
+                       Pages. When I first tested it 375 pixels wide, like a
+                       phone, the text was too small to read and the page
+                       scrolled sideways, so I rebuilt the layout mobile-first.</p>
+                    <p><a href="https://github.com/tammy587/tammy587.github.io">Source code for this site on GitHub</a></p>
                 </article>
 
                 <article class="project">
-                    <h3><a href="#projects">Learn JavaScript</a></h3>
-                    <p>Go beyond HTML and CSS and make pages that respond and
-                       do things.</p>
+                    <h3>The 3D mountain scene</h3>
+                    <p>On wider screens, a low-poly mountain turns beside my
+                       name. I wrote a brief with my palette colours and directed
+                       an AI assistant to build it in Three.js, one prompt at a
+                       time. The first snow cap was hidden inside the green peak,
+                       so I had it made slightly wider to sit over the surface,
+                       and I moved the camera low so it looks up at the summit
+                       like a hiker standing below it.</p>
                 </article>
 
                 <article class="project">
-                    <h3><a href="#projects">Contribute to open source</a></h3>
-                    <p>Find a beginner-friendly project on GitHub and get my
-                       first pull request merged.</p>
+                    <h3>Next goals: JavaScript and open source</h3>
+                    <p>The mountain scene runs on JavaScript that I directed but
+                       did not write myself. My next goal is to go beyond HTML
+                       and CSS and learn to make pages that respond and do
+                       things. After that, I want to find a beginner-friendly
+                       project on GitHub and get my first pull request merged.</p>
                 </article>
             </div>
         </section>
@@ -108,11 +144,11 @@
         <section id="classmates">
             <h2>My classmates' websites</h2>
             <ul class="contact-list">
-                <li>Brayden's GitHub:
-                    <a href="https://brayden-brezden.github.io">brayden-brezden.github.io</a>
+                <li>
+                    <a href="https://brayden-brezden.github.io">Brayden's portfolio site</a>
                 </li>
-                <li>Mario's GitHub:
-                    <a href="https://mariomacrae.github.io">mariomacrae.github.io</a>
+                <li>
+                    <a href="https://mariomacrae.github.io">Mario's portfolio site</a>
                 </li>
             </ul>
         </section>
@@ -147,8 +183,18 @@
     }
     </script>
     <script type="module">
-    import * as THREE from "three";
-    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    // Lab 7, Part 5: three.module.js is about 257 KB over the wire, most of
+    // the page's weight. Phones skip it: the scene only loads on screens
+    // 700px and wider (style.css hides #scene below that). Same import map,
+    // same version, same look.
+    const wide = window.matchMedia("(min-width: 700px)");
+    let started = false;
+
+    async function startScene() {
+    if (started) return;
+    started = true;
+    const THREE = await import("three");
+    const { OrbitControls } = await import("three/addons/controls/OrbitControls.js");
 
     const box = document.getElementById("scene");
 
@@ -219,6 +265,14 @@
         controls.update();
         renderer.render(scene, camera);
     });
+    }
+
+    // Load now on a wide screen, or later if a narrow window is widened.
+    if (wide.matches) {
+        startScene();
+    } else {
+        wide.addEventListener("change", (e) => { if (e.matches) startScene(); });
+    }
     </script>
 
     <!-- AI disclosure (assignment policy): I asked an AI assistant to scaffold
@@ -227,6 +281,10 @@
          am writing the content myself and can rebuild every part. The scene's
          prompts are recorded in prompts.md. In week 6 I asked Claude Code to
          add my photo with srcset, make the scene resize with the page, fill in
-         my contact details, and add the Classmates section and nav link. -->
+         my contact details, and add the Classmates section and nav link.
+         In week 7 (Lab 7) I asked Claude Code to add the skip link, the scene's
+         text alternative, the search and link-preview tags, to load the scene
+         only on wider screens, and to tighten the wording of my About and
+         project text from facts in my own records. Prompts are in prompts.md. -->
 </body>
 </html>
